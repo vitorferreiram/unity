@@ -79,10 +79,8 @@
                         'SenhaRepeticao': $("#senha-repeticao-usuario").val()
                     }
 
-                    console.log(usuario)
-
                     if (usuario.Senha === usuario.SenhaRepeticao)
-                        requisicao.post("cadastrar", usuario, SucessoCadastro, FalhaCadastro)
+                        post("cadastrar", usuario, SucessoCadastro, FalhaCadastro)
                     else
                         FalhaCadastro("As senhas não são iguais.")
                 }
