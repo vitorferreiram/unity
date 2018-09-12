@@ -1,15 +1,14 @@
 {
-  "name": "journey",
+  "name": "unity",
   "version": "1.0.0",
   "description": "Logistics",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Vitor Cioletti, Helbert Sa",
   "license": "ISC",
   "dependencies": {
-    "arangojs": "^6.4.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "boostrap": "^2.0.0",

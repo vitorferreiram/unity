@@ -6,7 +6,7 @@ router.get('/', function(req, res){
     res.render('cadastro-usuario')
 });
 
-router.post('/', function(req, res){
+router.post('/cadastrar', function(req, res){
 })
 
 module.exports = router
