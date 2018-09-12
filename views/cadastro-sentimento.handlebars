@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Unity</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="custom/cadastro-sentimento/images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="custom/cadastro-sentimento/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="custom/cadastro-sentimento/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="custom/cadastro-sentimento/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="custom/cadastro-sentimento/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="custom/cadastro-sentimento/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="custom/cadastro-sentimento/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="custom/cadastro-sentimento/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="custom/cadastro-sentimento/vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="custom/cadastro-sentimento/css/util.css">
+    <link rel="stylesheet" type="text/css" href="custom/cadastro-sentimento/css/main.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.min.css">
+</head>
+<body>
+
+
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form">
+				<span class="contact100-form-title">
+					Novo sentimento
+				</span>
+
+				<label class="label-input100" for="email">Nome *</label>
+				<div class="wrap-input100 validate-input">
+					<input id="email" class="input100" type="text" placeholder="Digite o nome do sentimento:">
+					<span class="focus-input100"></span>
+				</div>
+
+				<label class="label-input100" for="message">Descrição (Opcional)</label>
+				<div class="wrap-input100">
+					<textarea id="message" class="input100" name="message" placeholder="Digite a descrição do sentimento..."></textarea>
+					<span class="focus-input100"></span>
+                </div>
+                
+                <div id="flat-slider"></div>
+                    
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn">
+						<span>
+							Cadastrar
+							<i class="zmdi zmdi-plus-circle m-l-8"></i>
+						</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="custom/cadastro-sentimento/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="custom/cadastro-sentimento/vendor/animsition/js/animsition.min.js"></script>
+	<script src="custom/cadastro-sentimento/vendor/bootstrap/js/popper.js"></script>
+	<script src="custom/cadastro-sentimento/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="custom/cadastro-sentimento/vendor/select2/select2.min.js"></script>
+	<script src="custom/cadastro-sentimento/vendor/daterangepicker/moment.min.js"></script>
+	<script src="custom/cadastro-sentimento/vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="custom/cadastro-sentimento/vendor/countdowntime/countdowntime.js"></script>
+    <script src="custom/cadastro-sentimento/js/main.js"></script>
+	<script src="bower_components/jQuery-ui-Slider-Pips/dist/jquery-ui-slider-pips.min.js"></script>
+    
+<script>
+    $("#flat-slider")
+    .slider({
+        max: 100,
+        min: 0,
+        range: true,
+        orientation: "horizontal"
+    })
+    .slider("pips", {
+        first: "pip",
+        last: "pip"
+    });
+
+</script>
+</body>
+</html>

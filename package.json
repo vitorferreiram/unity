@@ -1,0 +1,30 @@
+{
+  "name": "journey",
+  "version": "1.0.0",
+  "description": "Logistics",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vitor Cioletti, Helbert Sa",
+  "license": "ISC",
+  "dependencies": {
+    "arangojs": "^6.4.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.2.0",
+    "fontawesome": "^4.7.2",
+    "jquery": "^3.3.1",
+    "pg": "^7.4.3",
+    "riot": "^3.10.1"
+  },
+  "devDependencies": {
+    "font-awesome": "^4.7.0"
+  }
+}
