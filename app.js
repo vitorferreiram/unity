@@ -63,7 +63,6 @@ app.use('/', login)
 
 app.use('/public', express.static(__dirname + '/public'))
 app.use('/script', express.static(__dirname + '/node_modules'))
-app.use('/custom',express.static(__dirname + '/views/custom'))
 
 app.set('port', (process.env.PORT || 3000))
 
