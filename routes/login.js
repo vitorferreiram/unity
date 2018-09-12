@@ -1,5 +1,5 @@
 const express = require('express')
-const arangodb = require('../models/arango-db')
+const arangodb = require('../models/banco')
 const router = express.Router()
 
 router.get('/', function(req, res){
