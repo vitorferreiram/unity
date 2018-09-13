@@ -80,7 +80,7 @@
                     }
 
                     if (usuario.Senha === usuario.SenhaRepeticao)
-                        post("cadastrar", usuario, SucessoCadastro, FalhaCadastro)
+                        post("cadastro-usuario/novo", usuario, SucessoCadastro, FalhaCadastro)
                     else
                         FalhaCadastro("As senhas não são iguais.")
                 }

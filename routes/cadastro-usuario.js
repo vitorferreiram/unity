@@ -1,12 +1,18 @@
 const express = require('express')
-const arangodb = require('../models/banco')
+const banco = require('../models/banco')
 const router = express.Router()
 
-router.get('/', function(req, res){
+router.get('/', function(_, res) {
     res.render('cadastro-usuario')
 });
 
-router.post('/cadastrar', function(req, res){
+router.post('/novo', function(req, _) {
+    console.log(banco)
+
+    var usuario = req.body
+
+    if (banco.UsuarioValido(usuario))
+        banco.CriaNovoUsuario(usuario)
 })
 
 module.exports = router
