@@ -5,34 +5,35 @@ module.exports =
     ValidaLogin,
 }
 
-function CriaNovoUsuario(usuario)
-{
+const crypto = require('crypto');
+
+function CriaNovoUsuario(usuario) {
     usuario.Senha = CriaHashSenha(usuario.Senha)
+    var email = CriaHashUsuario(usuario.Email)
 
     return true
 }
 
-function UsuarioValido(usuario)
+function UsuarioValido(usuario) {
     return true
 }
 
-function ValidaLogin(usuario)
-{
+function ValidaLogin(usuario) {
     return true
 }
 
-function CriaHashSenha(senha)
-{
-    senha = AdicionaSalSenha(senha)
-    return true
+function CriaHashSenha(senha) {
+    return CriaHash(senha, CriaSalSenha(), 32)
 }
 
-function AdicionaSalSenha(senha)
-{
-    return senha
+function CriaHashUsuario(email) {
+    return CriaHash(email, '', 4)
 }
 
-function CriaHashUsuario(email)
-{
-    return true
+function CriaHash(dado, sal, tamanhoHash) {
+    return crypto.pbkdf2Sync(dado, sal, 1000, tamanhoHash, 'sha256')
+}
+
+function CriaSalSenha() {
+    return crypto.randomBytes(8).toString('hex')
 }

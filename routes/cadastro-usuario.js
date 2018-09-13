@@ -7,8 +7,6 @@ router.get('/', function(_, res) {
 });
 
 router.post('/novo', function(req, _) {
-    console.log(banco)
-
     var usuario = req.body
 
     if (banco.UsuarioValido(usuario))
