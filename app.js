@@ -64,7 +64,7 @@ app.use('/', login)
 app.use('/public', express.static(__dirname + '/public'))
 app.use('/script', express.static(__dirname + '/node_modules'))
 
-app.set('port', (process.env.PORT || 3000))
+app.set('port', (process.env.PORT || 3001))
 
 app.listen(app.get('port'), function(){
 	console.log('Iniciado na porta: '+app.get('port'))

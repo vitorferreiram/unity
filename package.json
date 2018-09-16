@@ -9,9 +9,9 @@
   "author": "Vitor Cioletti, Helbert Sa",
   "license": "ISC",
   "dependencies": {
+    "alertifyjs": "^1.11.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
-    "boostrap": "^2.0.0",
     "bootstrap": "^4.1.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
@@ -23,7 +23,8 @@
     "jquery": "^3.3.1",
     "material-design-iconic-font": "^2.2.0",
     "pg": "^7.4.3",
-    "riot": "^3.10.1"
+    "riot": "^3.10.1",
+    "toastr": "^2.1.4"
   },
   "devDependencies": {
     "font-awesome": "^4.7.0"

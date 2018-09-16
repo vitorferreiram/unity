@@ -1,17 +1,18 @@
-﻿function get(rota, data, done, fail) {
+﻿function get(rota, dado, sucesso, falha) {
     var _url = rota;
 
     $.ajax({
         url: _url,
         type: 'GET',
-        data: JSON.stringify(data),
+        data: JSON.stringify(dado),
         contentType: "application/json",
         dataType: 'json',
-    }).done(done)
-    .fail(fail)
+        success : sucesso,
+        error : (jqXHR, _) => falha(jqXHR.responseText)
+    })
 }
 
-function post(rota, data, done, fail) {
+function post(rota, dado, sucesso, falha) {
     var _url = rota;
 
     $.ajax({
@@ -19,20 +20,22 @@ function post(rota, data, done, fail) {
         type: 'POST',
         contentType: "application/json",
         dataType: 'json',
-        data: JSON.stringify(data),
-    }).done(done)
-    .fail(fail)
+        data: JSON.stringify(dado),
+        success : sucesso,
+        error : (jqXHR, _) => falha(jqXHR.responseText)
+    })
 }
 
-function del(rota, data, done, fail) {
+function del(rota, dado, sucesso, falha) {
     var _url = rota;
 
     $.ajax({
         url: _url,
         type: 'DELETE',
-        data: JSON.stringify(data),
+        data: JSON.stringify(dado),
         contentType: "application/json",
         dataType: 'json',
-    }).done(done)
-    .fail(fail)
+        success : sucesso,
+        error : (jqXHR, _) => falha(jqXHR.responseText)
+    })
 }

@@ -7,10 +7,11 @@
         <link rel="stylesheet" type="text/css" href="public/cadastro-usuario/css/util.css">
         <link rel="stylesheet" type="text/css" href="public/cadastro-usuario/css/main.css">
         <link rel="stylesheet" type="text/css" href="script/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
-        <link rel="stylesheet" type="text/css" href="script/font-awesome/css/font-awesome.min.css"
+        <link rel="stylesheet" type="text/css" href="script/font-awesome/css/font-awesome.min.css">
+        <link  rel="stylesheet" type="text/css" href="script/toastr/build/toastr.min.css"/>
     </head>
     <body style="background-color: #999999;">
-        
+
         <div class="limiter">
             <div class="container-login100">
                 <div class="login100-more" style="background-image: url('public/cadastro-usuario/imagens/fundo.jpg');"></div>
@@ -46,7 +47,7 @@
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
-                                <button type="button" class="login100-form-btn" onclick="CadastrarUsuario()">
+                                <button type="button" id="cadastrar" class="login100-form-btn" onclick="CadastrarUsuario()">
                                     Cadastrar
                                 </button>
                             </div>
@@ -60,48 +61,50 @@
                 </div>
             </div>
         </div>
+        <script src="script/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="script/jquery/dist/jquery.min.js"></script>
         <script src="public/requisicao.js"></script>
         <script src="public/cadastro-usuario/js/main.js"></script>
+        <script src="script/toastr/build/toastr.min.js"></script>
 
         <script>
-            function CadastrarUsuario()
-            {
-                var campos = ["#campo-senha", "#campo-nome", "#campo-email", "#campo-repeticao-senha"]
+            function CadastrarUsuario() {
+                var campos = ["#campo-senha",
+                             "#campo-nome", 
+                             "#campo-email", 
+                             "#campo-repeticao-senha"]
 
-                if (PreenchimentoValido(campos))
-                {
-                    var usuario = 
-                    {
+                if (PreenchimentoValido(campos)) {
+                    var usuario = {
                         'Nome': $("#nome-usuario").val(),
                         'Email': $("#email-usuario").val(),
                         'Senha': $("#senha-usuario").val(),
                         'SenhaRepeticao': $("#senha-repeticao-usuario").val()
                     }
-
                     if (usuario.Senha === usuario.SenhaRepeticao)
                         post("cadastro-usuario/novo", usuario, SucessoCadastro, FalhaCadastro)
                     else
-                        FalhaCadastro("As senhas não são iguais.")
+                        FalhaCadastro('As senhas digitadas não são iguais.')
                 }
             }
 
-            function SucessoCadastro()
-            {
-                console.log("Sucesso Feliz")
+            function SucessoCadastro(data, textStatus, jqXHR) {
+                toastr.success('Usuário cadastrado com sucesso!')
+
+                $("#nome-usuario").val('')
+                $("#email-usuario").val('')
+                $("#senha-usuario").val('')
+                $("#senha-repeticao-usuario").val('')
             }
 
-            function FalhaCadastro(mensagemErro)
-            {
-                console.log(mensagemErro)
+            function FalhaCadastro(mensagemErro) {
+                toastr.error(mensagemErro)
             }
 
-            function PreenchimentoValido(campos)
-            {
+            function PreenchimentoValido(campos) {
                 var valido = true;
 
-                campos.forEach(function (identificador)
-                {
+                campos.forEach(function (identificador) {
                     if ($(identificador).hasClass('alert-validate'))
                         valido = false;
                 })

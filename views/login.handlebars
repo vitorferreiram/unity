@@ -8,6 +8,8 @@
     
 	<link rel="stylesheet" type="text/css" href="public/login/css/util.css">
     <link rel="stylesheet" type="text/css" href="public/login/css/main.css">
+    <link  rel="stylesheet" type="text/css" href="script/toastr/build/toastr.min.css"/>
+
     
 </head>
 
@@ -19,17 +21,17 @@
 				<span class="login100-form-title p-b-37">Olá, seja bem vindo</span>
 
 				<div class="wrap-input100 validate-input m-b-20" data-validate="Digite seu e-mail">
-					<input class="input100" type="email" name="username" placeholder="Email">
+					<input class="input100" type="email" id="email-usuario" name="username" placeholder="Email">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input m-b-25" data-validate = "Digite sua senha">
-					<input class="input100" type="password" name="pass" placeholder="Senha">
+					<input class="input100" id="senha-usuario" type="password" name="pass" placeholder="Senha">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="container-login100-form-btn">
-                    <button type="submit" formaction="cadastro-sentimento" class="login100-form-btn">
+                    <button type="button" onclick="Logar()" class="login100-form-btn">
                             Logar
                     </button>
 				</div>
@@ -51,5 +53,40 @@
 	<div id="dropDownSelect1"></div>
 	
     <script src="script/jquery/dist/jquery.min.js"></script>
+    <script src="public/requisicao.js"></script>
+    <script src="script/toastr/build/toastr.min.js"></script>
+
+
+    <script>
+        function Logar()
+        {
+
+            console.log('entrou')
+
+            var usuario = {
+                'Email' : $('#email-usuario').val(),
+                'Senha' : $('#senha-usuario').val()
+            }
+
+            if (ValidaPreenchimento(usuario)) {
+                post('/valida', usuario, RedirecionarAHome, MensagemErro)
+            }
+            else {
+                MensagemErro('Preencha todos os campos antes de prosseguir.')
+            }
+        }
+
+        function ValidaPreenchimento(usuario) {
+            return usuario.Email && usuario.Senha
+        }
+
+        function RedirecionarAHome(){
+            toastr.success('Logado com sucesso!')
+        }
+
+        function MensagemErro(mensagem) {
+            toastr.error(mensagem)
+        }
+    </script>
 </body>
 </html>
