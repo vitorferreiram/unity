@@ -1,5 +1,5 @@
 const express = require('express')
-const banco = require('../models/banco')
+const cadastroUsuarioController = require('../controllers/cadastro-usuario-controller')
 const router = express.Router()
 
 router.get('/', function(_, res) {
@@ -7,17 +7,19 @@ router.get('/', function(_, res) {
 });
 
 router.post('/novo', function(req, res) {
-    banco.CriaNovoUsuario(
-        req.body,
-        () => {
-            res.status(200)
-            res.send(JSON.stringify({}))
-        }, 
-        (mensagem) => {
-            res.statusMessage = mensagem
-            res.status(300)
-            res.send(JSON.stringify(mensagem))
-        })
+
+    function enviaRepostaOK() {
+        res.status(200)
+        res.send(JSON.stringify({}))
+    }
+    
+    function enviaRepostaErro(mensagem) {
+        res.statusMessage = mensagem
+        res.status(300)
+        res.send(JSON.stringify(mensagem))
+    }
+
+   cadastroUsuarioController.CadastraNovo(req.body, enviaRepostaOK, enviaRepostaErro);
 })
 
 module.exports = router
