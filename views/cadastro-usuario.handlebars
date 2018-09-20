@@ -95,6 +95,9 @@
                     else
                         FalhaCadastro('As senhas digitadas não são iguais.')
                 }
+                else {
+                    FalhaCadastro('Preencha todos os campos antes de prosseguir.');
+                }
             }
 
             function SucessoCadastro(data, textStatus, jqXHR) {
@@ -114,7 +117,8 @@
                 var valido = true;
 
                 campos.forEach(function (identificador) {
-                    if ($(identificador).hasClass('alert-validate'))
+                    var elemento = $(identificador);
+                    if (elemento.hasClass('alert-validate') || $.trim(elemento.val()) === '')
                         valido = false;
                 })
 

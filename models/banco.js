@@ -13,8 +13,6 @@ function CriaNovoUsuario(usuario, sucesso, falha) {
     usuario.Senha = CriaHashSenha(usuario.Senha, usuario.SalSenha)
     usuario.Id = CriaHashUsuario(usuario.Email)
 
-    console.log(usuario)
-
     function insereUsuario()
     {
         RealizaQuery(`INSERT INTO Usuario VALUES ('${usuario.Id}', '${usuario.Nome}', '${usuario.Email}', '${usuario.Senha}', '${usuario.SalSenha}', '${usuario.Tipo}')`,             

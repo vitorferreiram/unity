@@ -19,7 +19,6 @@ router.post('/novo', function(req, res) {
         res.send(JSON.stringify(mensagem))
     }
 
-    console.log(req.body)
     cadastroUsuarioController.CadastraNovo(req.body, enviaRepostaOK, enviaRepostaErro);
 })
 
