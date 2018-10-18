@@ -5,8 +5,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="public/menu.css"/>
+        <link rel="stylesheet" type="text/css" href="public/cadastro-sentimento/css/forms.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
         <link rel="stylesheet" type="text/css" href="script/font-awesome/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        
     </head>
     <body>
         <div class="ct" id="t1">
@@ -14,37 +19,139 @@
             <div class="ct" id="t3">
             <div class="ct" id="t4">
                 <div class="ct" id="t5">
-                <ul id="menu">
-                    <a href="#t1"><li class="icon fa fa-bolt" id="uno"></li></a>
-                    <a href="#t2"><li class="icon fa fa-keyboard-o" id="dos"></li></a>
-                    <a href="#t3"><li class="icon fa fa-rocket" id="tres"></li></a>
-                    <a href="#t4"><li class="icon fa fa-dribbble" id="cuatro"></li></a>
-                    <a href="#t5"><li class="icon fa fa-plus-circle" id="cinco"></li></a>
+                <ul id="menu" >
+                    <span style="margin: 20%; font-size: 13px; color: white">Vitor Cioletti</span>
+                    <span style="margin: 20%; font-size: 13px; color: white">Id: 32dsf4xpk</span>
+                    <a href="#t1"><li class="row icon fa fa-table" style="margin: 50%; font-size: 50px" id="uno"></li></a>
+                    <a href="#t2"><li class="row icon fa fa-keyboard-o" style="margin: 50%; font-size: 50px" id="dos"></li></a>
+                    <a href="#t3"><li class="row icon fa fa-gratipay" style="margin: 50%; font-size: 50px" id="tres"></li></a>
+                    <a href="#t4"><li class="row icon fa fa-address-book" style="margin: 50%; font-size: 50px" id="cuatro"></li></a>
+                    <a href="#t5"><li class="row icon fa fa-plus-circle" style="margin: 50%; font-size: 50px" id="cinco"></li></a>
                 </ul>
                 <div class="page" id="p1">
-                    <section class="icon fa fa-bolt"><span class="title">Bolt</span><span class="hint">Like this pen to see the magic!...<br> Just kidding, it won't happen anything but I'll be really happy If you do so.</span></section>  
+                    <section class="icon fa fa-bolt"><span class="title">Gráficos</span><span class="hint">...<br></span></section>  
                 </div>
                 <div class="page" id="p2">
-                    <section class="icon fa fa-keyboard-o"><span class="title">Type</span></section>
+                    <section class="container" style="margin: 5% 5% auto; background-color: white; color: black">
+                        <form>
+                            <div class="col-sm-8" ><h2>Registro de <b>Ocorrencias</b></h2></div>
+                            <div class="form-group">
+                                <label for="inputAddress">Data do ocorrido:</label>
+                                <input type="date" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea2">Descreva o ocorrido:</label>
+                                <textarea class="form-control rounded-0" id="registro-ocorrido" rows="3"></textarea>
+                            </div>
+                             <div class="form-group">
+                                <label for="exampleFormControlTextarea2">Descreva suas acoes:</label>
+                                <textarea class="form-control rounded-0" id="registro-acoes" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea2">Descreva seus pensamentos:</label>
+                                <textarea class="form-control rounded-0" id="registro-pensamentos" rows="3"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="inputCity">Sentimento:</label>
+                                    <select id="registro-sentimento" class="form-control">
+                                        <option selected>Selecione...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputState">Humor:</label>
+                                    <select id="registro-humor" class="form-control">
+                                        <option selected>Selecione...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Salvar dados</button>
+                        </form>
+                    </section>
                 </div>  
                 <div class="page" id="p3">
-                    <section class="icon fa fa-rocket"><span class="title">Rocket</span></section>
+                    <section>
+                        <div class="container" style="margin: 17% 10% 10% 5%; color: gray">
+                            <div class="table-wrapper">
+                                <div class="table-title">
+                                    <div class="row">
+                                        <div class="col-sm-8"><h2>Detalhes de <b>Sentimentos Personalizados</b></h2></div>
+                                        <div class="col-sm-4">
+                                            <button type="button" class="btn btn-info novo-sentimento"><i class="fa fa-plus"></i> Novo<button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered" id="tabela-sentimentos">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Escala</th>
+                                            <th>Acoes</th>
+                                        </tr>
+
+                                         <tr>
+                                            <td>Preguica</td>
+                                            <td>6</td>
+                                            <td>
+                                                <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                               
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
                 </div>
                 <div class="page" id="p4">
-                    <section class="icon fa fa-dribbble">
-                    <span class="title">Dribbble</span>
-                    <p class="hint">
-                        <a href="https://dribbble.com/albertohartzet" target="_blank">Im ready to play, <span class="hint line-trough">invite me </span> find me</a>
-                    </p>
-                    <p class="hint">Already invited by <a href="http://www.dribbble.com/mrpeters" target="_blank">Stan Peters</a></p>
+                    <section>
+                        <div class="container" style="margin: 17% 10% 10% 5%; color: gray">
+                            <div class="table-wrapper">
+                                <div class="table-title">
+                                    <div class="row">
+                                        <div class="col-sm-8"><h2>Detalhes de <b>Humores Personalizados</b></h2></div>
+                                        <div class="col-sm-4">
+                                            <button type="button" class="btn btn-info novo-humor"><i class="fa fa-plus"></i> Novo<button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered" id="tabela-humor">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Escala</th>
+                                            <th>Acoes</th>
+                                        </tr>
+                                         <tr>
+                                            <td>Ansiedade</td>
+                                            <td>4</td>
+                                            <td>
+                                                <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </section>
                 </div> 
                 <div class="page" id="p5">
                     <section class="icon fa fa-plus-circle">
-                    <span class="title">More</span>
+                    <span class="title">Alguma outra coisa...</span>
                     <p class="hint">
-                        <span>You love one page & CSS only stuff? </span><br/>
-                        <a href="https://codepen.io/hrtzt/details/pgXMYb/" target="_blank">check this pen "Pure CSS One page vertical navigation"</a>
+                        <span></span><br/>
+                        <a href="https://codepen.io/hrtzt/details/pgXMYb/" target="_blank"></a>
                     </p>
                     </section>
                 </div> 
@@ -55,5 +162,14 @@
         </div>
     </body>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="public/cadastro-sentimento/js/humorPersonalizado.js"></script>
+     <script src="public/requisicao.js"></script>
+    <script src="public/cadastro-sentimento/js/sentimentoPersonalizado.js"></script>
+
+    <script>
+
+    </script>
 </html>

@@ -4,9 +4,14 @@ const router = express.Router()
 
 router.get('/', function(req, res){
     res.render('cadastro-sentimento')
-});
+})
 
-router.post('/', function(req, res){
+router.post('/registro/ocorrencia', function(req, res){
+})
+
+routes.get('/humor', function(req, res)
+{
+
 })
 
 module.exports = router

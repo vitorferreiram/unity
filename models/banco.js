@@ -7,12 +7,19 @@ module.exports = {
 const mysql = require('mysql')
 const crypto = require('crypto')
 
-function CriaNovoUsuario(usuario, sucesso, falha) {
+const conexao = mysql.createConnection({
+    host : 'localhost',
+    user : 'root',
+    password : 'jimi225525',
+    database : 'Unity',
+    insecureAuth : true
+})
 
+function CriaNovoUsuario(usuario, sucesso, falha) {
     usuario.SalSenha = CriaSalSenha()
     usuario.Senha = CriaHashSenha(usuario.Senha, usuario.SalSenha)
     usuario.Id = CriaHashUsuario(usuario.Email)
-    usuario.Tipo = 'Paciente'
+    usuario.Tipo = 'P'
 
     function insereUsuario()
     {
@@ -54,26 +61,17 @@ function ValidaLogin(usuario, sucesso, falha) {
 }
 
 function RealizaQuery(query, sucesso, falha) {
-    var connection = mysql.createConnection({
-        host : 'localhost',
-        user : 'root',
-        password : 'unitypass',
-        database : 'Dados'
-    })
-
-    connection.query(query, (error, results, _) => {
-        if (error){
-            throw falha(error)
-        }
+    conexao.query(query, (error, results, _) => {
+        console.log(error)
+        if (error)
+            falha(error.sqlMessage)
         else 
             sucesso(results)    
     })
-
-    connection.end()
 }
 
-function CriaHashSenha(senha, salSenha) {
-    return CriaHash(senha, salSenha, 32)
+function CriaHashSenha(senha, sal) {
+    return CriaHash(senha, sal, 32)
 }
 
 function CriaHashUsuario(email) {
