@@ -19,7 +19,6 @@ function CriaNovoUsuario(usuario, sucesso, falha) {
     usuario.SalSenha = CriaSalSenha()
     usuario.Senha = CriaHashSenha(usuario.Senha, usuario.SalSenha)
     usuario.Id = CriaHashUsuario(usuario.Email)
-    usuario.Tipo = 'P'
 
     function insereUsuario()
     {

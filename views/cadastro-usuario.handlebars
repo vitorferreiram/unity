@@ -46,6 +46,14 @@
                             <span class="focus-input100"></span>
                         </div>
                         
+                        <div class="wrap-input100">
+                            <span class="label-input100">O que você é?</span>
+                            <select class="input100" id="tipo-usuario">
+                                <option value="P">Paciente</option>
+                                <option value="T">Terapeuta</option>
+                            </select>
+                        </div>
+
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
@@ -81,12 +89,16 @@
                         'Nome': $("#nome-usuario").val(),
                         'Email': $("#email-usuario").val(),
                         'Senha': $("#senha-usuario").val(),
+                        'Tipo': $('#tipo-usuario :selected').val(),
                         'SenhaRepeticao': $("#senha-repeticao-usuario").val()
                     }
                     if (usuario.Senha === usuario.SenhaRepeticao)
                         post("cadastro-usuario/novo", usuario, SucessoCadastro, FalhaCadastro)
                     else
                         FalhaCadastro('As senhas digitadas não são iguais.')
+                }
+                else {
+                    FalhaCadastro('Preencha todos os campos antes de prosseguir.');
                 }
             }
 
@@ -107,7 +119,8 @@
                 var valido = true;
 
                 campos.forEach(function (identificador) {
-                    if ($(identificador).hasClass('alert-validate'))
+                    var elemento = $(identificador);
+                    if (elemento.hasClass('alert-validate') || $.trim(elemento.val()) === '')
                         valido = false;
                 })
 
