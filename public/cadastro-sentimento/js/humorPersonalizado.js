@@ -11,7 +11,7 @@ $(document).ready(function(){
 			'<td>' + actions + '</td>' +
         '</tr>';
 		$("#tabela-humor").append(row);
-		$("#tabela-humor > tbody > tr").eq(index + 1).find(".add, .edit").toggle();
+		$("#tabela-humor tbody tr").eq(index + 1).find(".add, .edit").toggle();
         $('[data-toggle="tooltip"]').tooltip();
     });
 	// Add row on add button click
@@ -31,7 +31,6 @@ $(document).ready(function(){
 			input.each(function(){
 				$(this).parent("td").html($(this).val());
 			});			
-			$(this).parents("tr").find(".add, .edit").toggle();
 			$(".novo-humor").removeAttr("disabled");
 		}		
     });
@@ -40,7 +39,6 @@ $(document).ready(function(){
         $(this).parents("tr").find("td:not(:last-child)").each(function(){
 			$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
 		});		
-		$(this).parents("tr").find(".add, .edit").toggle();
 		$(".novo-humor").attr("disabled", "disabled");
     });
 	// Delete row on delete button click

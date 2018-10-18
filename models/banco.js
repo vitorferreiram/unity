@@ -4,7 +4,13 @@ module.exports = {
     ValidaLogin,
     ObtemHumores,
     ObtemSentimentos,
-    InsereOcorrencia
+    InsereOcorrencia,
+    InsereHumor,
+    RemoveHumor,
+    EditaHumor,
+    InsereSentimento,
+    RemoveSentimento,
+    EditaSentimento
 }
 
 const mysql = require('mysql')
@@ -43,6 +49,30 @@ function ObtemSentimentos(sucesso, falha) {
 
 function InsereOcorrencia(ocorrencia, sucesso, falha) {
     RealizaQuery(`INSERT INTO Ocorrencia VALUES (NULL, '${ocorrencia.Data}', '${ocorrencia.Descricao}', '${ocorrencia.Acoes}', '${ocorrencia.Pensamentos}', '${ocorrencia.Paciente}', '${ocorrencia.Humor}', '${ocorrencia.Data}')`, sucesso, falha)
+}
+
+function InsereHumor(humor, sucesso, falha) {
+    RealizaQuery(`INSERT INTO Humor VALUES (NULL, '${humor.Descricao}', '${humor.Data}', '${humor.Escala}', '${humor.Criador}')`, sucesso, falha)
+}
+
+function EditaHumor(humor, sucesso, falha) {
+    RealizaQuery(`UPDATE Humor SET('${humor.Descricao}', '${humor.Criacao}','${humor.Escala}') WHERE Id = '${humor.Id}'`, sucesso, falha)
+}
+
+function RemoveHumor(humor, sucesso, falha) {
+    RealizaQuery(`DELETE FROM Humor WHERE Id =  '${humor.Id}'`, sucesso, falha)
+}
+
+function InsereSentimento(sentimento, sucesso, falha) {
+    RealizaQuery(`INSERT INTO Sentimento VALUES (NULL, '${humor.Descricao}', '${humor.Data}', '${humor.Escala}', '${humor.Criador}')`, sucesso, falha)
+}
+
+function EditaSentimento(sentimento, sucesso, falha) {
+    RealizaQuery(`UPDATE Sentimento SET('${humor.Descricao}', '${humor.Criacao}','${humor.Escala}') WHERE Id = '${humor.Id}'`, sucesso, falha)
+}
+
+function RemoveSentimento(sentimento, sucesso, falha) {
+    RealizaQuery(`DELETE FROM Sentimento WHERE Id =  '${humor.Id}'`, sucesso, falha)
 }
 
 function EmailCadastrado(email, sucesso, falha) {

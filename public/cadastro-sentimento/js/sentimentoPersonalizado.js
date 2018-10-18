@@ -11,7 +11,7 @@ $(document).ready(function(){
 			'<td>' + actions + '</td>' +
 		'</tr>';
 		
-    	$("#tabela-sentimentos").append(row);		
+		$("#tabela-sentimentos").append(row);
 		$("#tabela-sentimentos tbody tr").eq(index + 1).find(".add, .edit").toggle();
         $('[data-toggle="tooltip"]').tooltip();
     });
