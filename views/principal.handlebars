@@ -21,8 +21,7 @@
             <div class="ct" id="t4">
                 <div class="ct" id="t5">
                 <ul id="menu" >
-                    <span style="margin: 20%; font-size: 13px; color: white">Vitor Cioletti</span>
-                    <span style="margin: 20%; font-size: 13px; color: white">Id: 32dsf4xpk</span>
+                    <p style="margin: 20%; font-size: 13px; color: white">Id: <span id="id-usuario">39c52941</span></p>
                     <a href="#t1"><li class="row icon fa fa-table" style="margin: 50%; font-size: 50px" id="uno"></li></a>
                     <a href="#t2"><li class="row icon fa fa-keyboard-o" style="margin: 50%; font-size: 50px" id="dos"></li></a>
                     <a href="#t3"><li class="row icon fa fa-gratipay" style="margin: 50%; font-size: 50px" id="tres"></li></a>
@@ -38,7 +37,7 @@
                             <div class="col-sm-8" ><h2>Registro de <b>Ocorrencias</b></h2></div>
                             <div class="form-group">
                                 <label for="inputAddress">Data do ocorrido:</label>
-                                <input type="date" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                <input type="date" class="form-control" id="registro-data" placeholder="1234 Main St">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea2">Descreva o ocorrido:</label>
@@ -69,7 +68,7 @@
                                 </div>
                             </div>
                             
-                            <button type="submit" class="btn btn-primary">Salvar dados</button>
+                            <button onclick="SalvaOcorrencia()" class="btn btn-primary">Salvar dados</button>
                         </form>
                     </section>
                 </div>  
@@ -172,7 +171,12 @@
     <script src="script/toastr/build/toastr.min.js"></script>
 
     <script>
-        window.onload = ObtemHumores
+        window.onload = Inicializa
+
+        function Inicializa() {
+            ObtemHumores()
+            ObtemSentimentos()
+        }
 
         function ObtemHumores() {
             var preencheLista = (humores) => {
@@ -194,7 +198,53 @@
             get('/sentimento', { }, preencheLista, MensagemErro)
         }
 
-         function MensagemErro(mensagem) {
+        function SalvaOcorrencia() {
+            var campos = []
+
+            if (PreenchimentoValido(campos)) {
+                var ocorrencia = {
+                    'Data' : $('#registro-data').val(),
+                    'Descricao' : $('#registro-ocorrido').val(),
+                    'Acoes' : $('#registro-acoes').val(),
+                    'Pensamentos' : $('#registro-pensamentos').val(),
+                    'Paciente' : $('#id-usuario').text(),
+                    'Humor' : $('#registro-humor').val(),
+                    'Sentimento' : $('#registro-sentimento').val()
+                }
+
+                console.log(ocorrencia)
+
+                post('/ocorrencia', ocorrencia, SucessoInsercao, MensagemErro)
+            }
+            else {
+                MensagemErro('Preencha todos os campos antes de prosseguir.')
+            }
+        }
+
+        function SucessoInsercao() {
+            MensagemSucesso('Ocorrencia inserida com sucesso!')
+            LimpaOcorrencia()
+        }
+
+        function LimpaOcorrencia() {
+            $('#registro-data').val('') 
+            $('#registro-ocorrido').val('')
+            $('#registro-acoes').val('')
+            $('#registro-pensamentos').val('')
+            $('#id-usuario').val('')
+            $('#registro-humor').val('')
+            $('#registro-sentimento').val('')
+        }
+
+        function PreenchimentoValido(campos) {
+            return true
+        }
+
+        function MensagemSucesso(mensagem) {
+            toastr.success(mensagem)
+        }
+
+        function MensagemErro(mensagem) {
             toastr.error(mensagem)
         }
     </script>

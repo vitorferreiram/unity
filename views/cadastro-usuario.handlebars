@@ -51,6 +51,7 @@
                             <select class="input100" id="tipo-usuario">
                                 <option value="P">Paciente</option>
                                 <option value="T">Terapeuta</option>
+                                <option value="E">Estudante de Psicologia</option>
                             </select>
                         </div>
 
@@ -120,7 +121,7 @@
 
                 campos.forEach(function (identificador) {
                     var elemento = $(identificador);
-                    if (elemento.hasClass('alert-validate') || $.trim(elemento.val()) === '')
+                    if (elemento.hasClass('alert-validate'))
                         valido = false;
                 })
 

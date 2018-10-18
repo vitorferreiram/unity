@@ -12,9 +12,9 @@ router.get('/', function(req, res){
 
 router.post('/valida', function(req, res){
 
-    function enviaRespostaOK() {
+    function enviaRespostaOK(resultado) {
         res.status(200)
-        res.send(JSON.stringify({}))
+        res.send(JSON.stringify(resultado))
     }
 
     function enviaMensagemErro(mensagem) {

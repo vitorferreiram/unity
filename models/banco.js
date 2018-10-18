@@ -2,7 +2,9 @@ module.exports = {
     CriaNovoUsuario,
     EmailCadastrado,
     ValidaLogin,
-    ObtemHumores
+    ObtemHumores,
+    ObtemSentimentos,
+    InsereOcorrencia
 }
 
 const mysql = require('mysql')
@@ -35,6 +37,14 @@ function ObtemHumores(sucesso, falha) {
     RealizaQuery('SELECT * FROM Humor', sucesso, falha)
 }
 
+function ObtemSentimentos(sucesso, falha) {
+    RealizaQuery('SELECT * FROM Sentimento', sucesso, falha)
+}
+
+function InsereOcorrencia(ocorrencia, sucesso, falha) {
+    RealizaQuery(`INSERT INTO Ocorrencia VALUES (NULL, '${ocorrencia.Data}', '${ocorrencia.Descricao}', '${ocorrencia.Acoes}', '${ocorrencia.Pensamentos}', '${ocorrencia.Paciente}', '${ocorrencia.Humor}', '${ocorrencia.Data}')`, sucesso, falha)
+}
+
 function EmailCadastrado(email, sucesso, falha) {
     function validaEmailExistente(resultado)
     {
@@ -56,12 +66,12 @@ function ValidaLogin(usuario, sucesso, falha) {
         var hashSenhaDigitada = CriaHashSenha(usuario.Senha, salCadastrado);
 
         if (hashSenhaDigitada === hashSenhaCadastrada)
-            sucesso()
+            sucesso(resultado[0])
         else
             falha('Senha ou email incorretos. Digite novamente!')
     }
     
-    RealizaQuery(`SELECT Senha, Sal FROM Usuario WHERE Email = '${usuario.Email}'`, validaSenha, falha)
+    RealizaQuery(`SELECT * FROM Usuario WHERE Email = '${usuario.Email}'`, validaSenha, falha)
 }
 
 function RealizaQuery(query, sucesso, falha) {

@@ -9,8 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="public/login/css/util.css">
     <link rel="stylesheet" type="text/css" href="public/login/css/main.css">
     <link  rel="stylesheet" type="text/css" href="script/toastr/build/toastr.min.css"/>
-
-    
 </head>
 
 <body>
@@ -60,8 +58,6 @@
     <script>
         function Logar()
         {
-            console.log('entrou')
-
             var usuario = {
                 'Email' : $('#email-usuario').val(),
                 'Senha' : $('#senha-usuario').val()
@@ -79,7 +75,8 @@
             return usuario.Email && usuario.Senha
         }
 
-        function RedirecionarAHome(){
+        function RedirecionarAHome(retorno) {
+            window.location.href = '/principal'
             toastr.success('Logado com sucesso!')
         }
 
