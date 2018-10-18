@@ -7,7 +7,6 @@ $(document).ready(function(){
 		var index = $("#tabela-sentimentos > tbody > tr:last-child").index();
         var row = '<tr>' +
             '<td><input type="text" class="form-control" name="nome" id="name"></td>' +
-            '<td><input type="text" class="form-control" name="escala" id="departament"></td>' +
 			'<td>' + actions + '</td>' +
 		'</tr>';
 		
