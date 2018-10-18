@@ -9,7 +9,8 @@ var session = require('express-session');
 
 var login = require('./routes/login');
 var cadastroUsuario = require('./routes/cadastro-usuario');
-var cadastroSentimento = require('./routes/cadastro-sentimento');
+var principal = require('./routes/cadastro-sentimento');
+var humor = require('./routes/humor')
 
 var app = express();
 
@@ -58,7 +59,8 @@ app.use(function (req, res, next) {
 
 app.use('/login', login)
 app.use('/cadastro-usuario', cadastroUsuario)
-app.use('/cadastro-sentimento', cadastroSentimento)
+app.use('/cadastro-sentimento', principal)
+app.use('/humor', humor)
 app.use('/', login)
 
 app.use('/public', express.static(__dirname + '/public'))

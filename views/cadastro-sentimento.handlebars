@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link  rel="stylesheet" type="text/css" href="script/toastr/build/toastr.min.css"/>
         
     </head>
     <body>
@@ -166,10 +167,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="public/cadastro-sentimento/js/humorPersonalizado.js"></script>
-     <script src="public/requisicao.js"></script>
+    <script src="public/requisicao.js"></script>
     <script src="public/cadastro-sentimento/js/sentimentoPersonalizado.js"></script>
+    <script src="script/toastr/build/toastr.min.js"></script>
 
     <script>
+        window.onload = ObtemHumores
 
+        function ObtemHumores() {
+            var preencheLista = (humores) => {
+                humores.forEach(humor => {
+                    $('#registro-humor').append('<option value="'+ humor.Id +'">'+ humor.Descricao +'</option>');
+                })
+            }
+
+            get('/humor', { }, preencheLista, MensagemErro)
+        }
+
+        function ObtemSentimentos() {
+            var preencheLista = (sentimentos) => {
+                sentimentos.forEach(sentimento => {
+                    $('#registro-sentimento').append('<option value="'+ sentimento.Id +'">'+ sentimento.Descricao +'</option>');
+                })
+            }
+
+            get('/sentimento', { }, preencheLista, MensagemErro)
+        }
+
+         function MensagemErro(mensagem) {
+            toastr.error(mensagem)
+        }
     </script>
 </html>

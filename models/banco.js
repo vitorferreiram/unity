@@ -2,6 +2,7 @@ module.exports = {
     CriaNovoUsuario,
     EmailCadastrado,
     ValidaLogin,
+    ObtemHumores
 }
 
 const mysql = require('mysql')
@@ -28,6 +29,10 @@ function CriaNovoUsuario(usuario, sucesso, falha) {
     }
 
     EmailCadastrado(usuario.Email, insereUsuario, falha);
+}
+
+function ObtemHumores(sucesso, falha) {
+    RealizaQuery('SELECT * FROM Humor', sucesso, falha)
 }
 
 function EmailCadastrado(email, sucesso, falha) {
