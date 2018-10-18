@@ -212,8 +212,6 @@
                     'Sentimento' : $('#registro-sentimento').val()
                 }
 
-                console.log(ocorrencia)
-
                 post('/ocorrencia', ocorrencia, SucessoInsercao, MensagemErro)
             }
             else {
