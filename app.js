@@ -3,7 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
-var expressValidator = require('express-validator');
+// var expressValidator = requireexpress-validator/check');
 var flash = require('connect-flash');
 var session = require('express-session');
 
@@ -32,22 +32,22 @@ app.use(session({
     resave: true
 }));
 
-app.use(expressValidator({
-    errorFormatter: function(param, msg, value) {
-        var namespace = param.split('.')
-        , root    = namespace.shift()
-        , formParam = root;
+// app.use(expressValidator({
+//     errorFormatter: function(param, msg, value) {
+//         var namespace = param.split('.')
+//         , root    = namespace.shift()
+//         , formParam = root;
   
-      while(namespace.length) {
-        formParam += '[' + namespace.shift() + ']';
-      }
-      return {
-        param : formParam,
-        msg   : msg,
-        value : value
-      };
-    }
-  }));
+//       while(namespace.length) {
+//         formParam += '[' + namespace.shift() + ']';
+//       }
+//       return {
+//         param : formParam,
+//         msg   : msg,
+//         value : value
+//       };
+//     }
+//   }));
 
 app.use(flash());
 

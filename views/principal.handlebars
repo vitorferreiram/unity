@@ -29,10 +29,13 @@
                     <a href="#t5"><li class="row icon fa fa-plus-circle" style="margin: 50%; font-size: 50px" id="cinco"></li></a>
                 </ul>
                 <div class="page" id="p1">
-                    <section class="icon fa fa-bolt"><span class="title">Gráficos</span><span class="hint">...<br></span></section>  
+                    <section class="icon container">
+                        <canvas id="grafico-escala" height="300" width="300"></canvas>
+                        <canvas id="grafico-pensamento" height="300" width="300" style=""</canvas> 
+                    </section> 
                 </div>
                 <div class="page" id="p2">
-                    <section class="container" style="margin: 5% 5% auto; background-color: white; color: black">
+                    <section class="container" style="margin: 1% 1% auto; background-color: white; color: black">
                         <form>
                             <div class="col-sm-8" ><h2>Registro de <b>Ocorrencias</b></h2></div>
                             <div class="form-group">
@@ -41,7 +44,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea2">Descreva o ocorrido:</label>
-                                <textarea class="form-control rounded-0" id="registro-ocorrido" rows="3"></textarea>
+                                <textarea class="form-control rounded-0" id="registro-ocorrido" rows="2"></textarea>
                             </div>
                              <div class="form-group">
                                 <label for="exampleFormControlTextarea2">Descreva suas acoes:</label>
@@ -78,6 +81,13 @@
                                 <div class="form-group col-md-3">
                                     <label for="inputState">Humor:</label>
                                     <select id="registro-humor" class="form-control">
+                                        <option selected>Selecione...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputCity">Pensamento predominante:</label>
+                                    <select id="registro-pensamento" class="form-control">
                                         <option selected>Selecione...</option>
                                         <option>...</option>
                                     </select>
@@ -161,14 +171,43 @@
                     </section>
                 </div> 
                 <div class="page" id="p5">
-                    <section class="icon fa fa-plus-circle">
-                    <span class="title">Alguma outra coisa...</span>
-                    <p class="hint">
-                        <span></span><br/>
-                        <a href="https://codepen.io/hrtzt/details/pgXMYb/" target="_blank"></a>
-                    </p>
+                    <section>
+                        <div class="container" style="margin: 17% 10% 10% 5%; color: gray">
+                            <div class="table-wrapper">
+                                <div class="table-title">
+                                    <div class="row">
+                                        <div class="col-sm-8"><h2>Detalhes de <b>Pensamentos Personalizados</b></h2></div>
+                                        <div class="col-sm-4">
+                                            <button type="button" class="btn btn-info novo-pensamento"><i class="fa fa-plus"></i> Novo<button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered" id="tabela-pensamento">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Descrição</th>
+                                            <th>Acoes</th>
+                                        </tr>
+
+                                         <tr>
+                                            <td>Saudade</td>
+                                            <td>Teste de pensamento</td>
+                                            <td>
+                                                <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                               
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </section>
-                </div> 
+                </div>
                 </div>
             </div>
             </div>
@@ -182,7 +221,9 @@
     <script src="public/cadastro-sentimento/js/humorPersonalizado.js"></script>
     <script src="public/requisicao.js"></script>
     <script src="public/cadastro-sentimento/js/sentimentoPersonalizado.js"></script>
+    <script src="public/cadastro-sentimento/js/pensamentoPersonalizado.js"></script>
     <script src="script/toastr/build/toastr.min.js"></script>
+    <script src="script/chart.js/dist/Chart.js"></script>
 
     <script>
         window.onload = Inicializa
@@ -190,6 +231,10 @@
         function Inicializa() {
             ObtemHumores()
             ObtemSentimentos()
+            ObtemPensamentos()
+
+            CriaGrafico("grafico-escala")
+            CriaGrafico("grafico-pensamento")
         }
 
         function ObtemHumores() {
@@ -211,6 +256,17 @@
 
             get('/sentimento', { }, preencheLista, MensagemErro)
         }
+
+            function ObtemPensamentos() {
+            var preencheLista = (sentimentos) => {
+                sentimentos.forEach(sentimento => {
+                    $('#registro-pensamento').append('<option value="'+ sentimento.Id +'">'+ sentimento.Descricao +'</option>');
+                })
+            }
+
+            get('/pensamento', { }, preencheLista, MensagemErro)
+        }
+
 
         function SalvaOcorrencia() {
             var campos = []
@@ -258,6 +314,46 @@
 
         function MensagemErro(mensagem) {
             toastr.error(mensagem)
+        }
+
+        function CriaGrafico(grafico) {
+            var grafico = document.getElementById(grafico).getContext('2d')
+            new Chart(grafico, {
+                type: 'bar',
+                data: {
+                    labels: ["Solidão", "Tristeza", "Preguiça", "Saudade", "Alegria", "Solitude"],
+                    datasets: [{
+                        label: 'Escala de Sentimentos',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            })
         }
     </script>
 </html>
